@@ -56,4 +56,6 @@ main ()
 
     return 0;
 
+    // rowptr + 1 --->   points to the next row in the array
+
 }
