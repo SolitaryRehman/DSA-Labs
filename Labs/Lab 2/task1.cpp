@@ -44,5 +44,9 @@ main ()
     //  *(p+2)  -->  Value at 3rd term meaning sales[2]
     //  *(p+5)  -->  Because it exceeds the length of the array so we can't use to modify it
 
+    p = nullptr;
+    cout << endl << "Pointer has been set to nullptr." << endl;
+    
+    return 0;
 
 }
