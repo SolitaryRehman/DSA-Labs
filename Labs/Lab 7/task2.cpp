@@ -1,13 +1,18 @@
 // Task 2: Queue using singly linked nodes
+
 #include <iostream>
 using namespace std;
 
-class LinkedQueue {
+class LinkedQueue
+{
+
 private:
-    struct node {
+    struct node
+    {
         int data;
         node* next;
     };
+
     node* front;
     node* rear;
 
@@ -16,67 +21,104 @@ private:
     LinkedQueue& operator=(const LinkedQueue&);
 
 public:
-    LinkedQueue() : front(nullptr), rear(nullptr) {}
+    LinkedQueue() : front(nullptr), rear(nullptr)
+    {
 
-    ~LinkedQueue() { ClearQueue(); }
+    }
 
-    bool IsEmpty() const { return front == nullptr; }
+    ~LinkedQueue()
+    {
+        ClearQueue();
+    }
 
-    void Enqueue(int value) {
+    bool IsEmpty() const
+    {
+        return front == nullptr;
+    }
+
+    void Enqueue(int value)
+    {
         node* n = new node;
         n->data = value;
         n->next = nullptr;
-        if (IsEmpty()) {
-            front = rear = n;
-        } else {
+
+        if (IsEmpty())
+        {
+            front = n;
+            rear = n;
+        }
+        else
+        {
             rear->next = n;   // insert at rear, no traversal
             rear = n;
         }
+
         cout << "Enqueued: " << value << "\n";
     }
 
-    void Dequeue() {
-        if (IsEmpty()) {
+    void Dequeue()
+    {
+        if (IsEmpty())
+        {
             cout << "Queue is empty. Cannot dequeue.\n";
             return;
         }
+
         node* temp = front;
         cout << "Dequeued: " << temp->data << "\n";
+
         front = front->next;
-        if (front == nullptr) rear = nullptr;   // last node removed: reset rear
+
+        if (front == nullptr)
+        {
+            rear = nullptr;   // last node removed: reset rear
+        }
+
         delete temp;
     }
 
-    void Peek() const {
-        if (IsEmpty()) {
+    void Peek() const
+    {
+        if (IsEmpty())
+        {
             cout << "Queue is empty. Nothing to peek.\n";
             return;
         }
         cout << "Front value: " << front->data << "\n";
     }
 
-    void Display() const {
-        if (IsEmpty()) {
+    void Display() const
+    {
+        if (IsEmpty())
+        {
             cout << "Queue is empty.\n";
             return;
         }
         cout << "Queue (front to rear): ";
+
         for (node* cur = front; cur != nullptr; cur = cur->next)
+        {
             cout << cur->data << " ";
+        }
+
         cout << "\n";
     }
 
-    void ClearQueue() {
-        while (front != nullptr) {
+    void ClearQueue()
+    {
+        while (front != nullptr)
+        {
             node* temp = front;
             front = front->next;
             delete temp;
         }
+
         rear = nullptr;
     }
 };
 
-int main() {
+int main()
+{
     LinkedQueue q;
 
     cout << "--- Enqueue 10, 20, 30 ---\n";
